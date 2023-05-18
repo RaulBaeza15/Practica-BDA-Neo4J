@@ -21,9 +21,22 @@ WHERE n.born <=datetime().year-50
 RETURN n.name, n.born
 
 B. Haz una consulta que muestre a todas las personas menores de 50 años que hayan actuado en al menos una película.
-MATCH (n:Person)  
-WHERE n.born>datetime().year-50
-RETURN n.name, n.born,datetime().year-n.born
+MATCH (n)-[r]->()
+RETURN DISTINCT type(r) AS relationship
+"ACTED_IN"
+"DIRECTED"
+"PRODUCED"
+"WROTE"
+"FOLLOWS"
+"REVIEWED"
+
+MATCH (m:Movie)
+RETURN DISTINCT keys(m) AS movieProperties
+
+
+MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
+WHERE p.born>datetime().year-50
+RETURN p.name,p.born,datetime().year-p.born,m.title
 
 C. Haz una consulta que muestre todas las relaciones que unen a una persona con otra persona
 sin importar la etiqueta que tengan.
