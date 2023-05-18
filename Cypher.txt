@@ -1,0 +1,61 @@
+//Ver total de etiquetas
+MATCH (n)  // Selecciona todos los nodos en el grafo
+RETURN DISTINCT LABELS(n)  // Retorna las etiquetas distintas de los nodos
+["Movie"]
+["Person"]
+
+A. Buscar las personas que tengan más de 50 años
+MATCH (p:Person)
+RETURN p;
+MATCH (p:Person)
+RETURN properties(p)
+
+MATCH (n:Label)  // Reemplaza 'Label' con la etiqueta del nodo que deseas consultar
+WHERE n.propiedad = 'valor'  // Si quieres filtrar los nodos por alguna propiedad en particular
+RETURN n.atributo1, n.atributo2, ...  // Reemplaza 'atributo1', 'atributo2', etc., con los atributos que deseas visualizar
+
+RETURN datetime().year AS currentYear
+
+MATCH (n:Person)  
+WHERE n.born <=datetime().year-50
+RETURN n.name, n.born
+
+B. Haz una consulta que muestre a todas las personas menores de 50 años que hayan actuado en al menos una película.
+MATCH (n:Person)  
+WHERE n.born>datetime().year-50
+RETURN n.name, n.born,datetime().year-n.born
+
+C. Haz una consulta que muestre todas las relaciones que unen a una persona con otra persona
+sin importar la etiqueta que tengan.
+D. Buscar las personas que han dirigido por lo menos 3 películas
+E. Haz una consulta que muestre todas las películas que han sido dirigidas por dos o más
+personas.
+F. Haz una consulta que inserte un nodo con etiqueta Person en el grafo (da igual si los valores
+de los atributos son inventados, no tienes por qué poner tus datos personales si no quieres).
+G. Haz una consulta que cree una review (Etiqueta REVIEW) de una película de la base de datos
+a tu elección (usa el nodo Person creado en la pregunta anterior).
+H. Define que el texto de la review tiene que ser único en la base de datos y no debe de
+permitir la creación de repetidos.
+I. Eliminare la restricción que has creado anteriormente
+J. Trasformar el modelo en grafo en un modelo tabular que devuelva una table con nombre,
+legación y nombre de la película ordenado por nombre de actor.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
